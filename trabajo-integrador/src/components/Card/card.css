@@ -1,0 +1,26 @@
+.character-card {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 10px;
+  text-align: center;
+}
+
+.character-card img {
+  /* Importante para que no se “desborde” */
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+}
+
+.character-card h4 {
+  font-size: 16px;
+  margin: 8px 0;
+}
+
+.character-card p {
+  font-size: 14px;
+  color: #555;
+  margin-top: 6px;
+}
