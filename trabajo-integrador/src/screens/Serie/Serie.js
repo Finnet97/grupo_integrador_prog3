@@ -1,5 +1,5 @@
 function Serie(params) {
-    return <div>Series</div>;
+    return <div>Serie</div>;
     
 }
 

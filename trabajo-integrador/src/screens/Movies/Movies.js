@@ -7,8 +7,8 @@ function Movies() {
     <React.Fragment>
       <Header />
       <main>
-        <h1>Personajes</h1>
-        <Cards/>
+        <h1>Movies</h1>
+        <Cards type="movie" />
       </main>
       <Footer />
     </React.Fragment>

@@ -8,7 +8,7 @@ import Movies from "./screens/Movies/Movies";
 import Serie from "./screens/Serie/Serie";
 import Series from "./screens/Series/Series";
 import Favourites from "./screens/Favourites/Favourites";
-import Results from "./screens/SearchResults/SearchResults";
+import SearchResults from "./screens/SearchResults/SearchResults";
 import NotFound from "./screens/NotFound/NotFound";
 
 function App() {
@@ -16,11 +16,11 @@ function App() {
     <Switch>
       <Route exact path="/" component={Index} />
       <Route exact path="/movies" component={Movies} />
-      <Route path="/movie/:id" component={Movie} />
+      <Route exact path="/movie/:id" component={Movie} />
       <Route exact path="/series" component={Series} />
       <Route path="/series/:id" component={Serie} />
-      <Route path="/results" component={Results} />
-      <Route path="/favourites" component={Favourites} />
+      <Route path="/SearchResults" component={SearchResults} />
+      <Route exact path="/favourites" component={Favourites} />
       <Route component={NotFound} />
     </Switch>
   );

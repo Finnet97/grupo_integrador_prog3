@@ -1,15 +1,49 @@
 .site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
   background: #fff;
   border-bottom: 1px solid #ddd;
-  padding: 10px 0;
 }
-.site-header .nav {
+
+/* Marca (logo + nombre) alineados */
+.brand {
   display: flex;
-  gap: 12px;
-  padding: 0 16px;
+  align-items: center;
+  gap: 8px;
 }
-.site-header .nav a {
-  color: #0070f3;
+
+.logo {
+  height: 60px;      /* tamaño razonable */
+  width: auto;
+  border-radius: 50%; /* si tu logo es cuadrado, queda redondito; sacalo si no te gusta */
+}
+
+.brand-name {
+  font-size: 22px;
+  line-height: 1;
+  font-weight: 700;
+  color: #1366cc;    /* tu azul de marca */
+  margin: 0;         /* por si viene con margen por defecto */
+}
+
+/* Navegación horizontal simple */
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.main-nav a {
+  color: #1366cc;
   text-decoration: none;
+  font-weight: 600;
 }
-.site-header .nav a:hover { text-decoration: underline; }
+
+.main-nav a:hover {
+  text-decoration: underline;
+}
