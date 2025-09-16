@@ -32,9 +32,10 @@ class Cards extends Component {
       <section className="home-block">
         <div className="home-block__header">
           <h2>{title}</h2>
+          
           {seeAllPath && (
             <Link to={seeAllPath} className="btn-seeall">
-              See all
+              See all 
             </Link>
           )}
         </div>
