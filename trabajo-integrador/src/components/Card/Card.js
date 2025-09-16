@@ -6,9 +6,22 @@ class Card extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      mostrarDescripcion: false
+      mostrarDescripcion: false,
+      estadoFavorito: false
     };
   }
+
+  componentDidMount(){
+    let favoritos= JSON.parse(localStorage.getItem(this.props.type))
+if(favoritos!==null){
+    if (favoritos.includes(this.props.id)) {
+      this.setState({
+      estadoFavorito: true
+    })
+
+    }
+  }
+}
 
   toggleDescripcion() {
     this.setState({
@@ -16,6 +29,32 @@ class Card extends Component {
     });
   }
 
+
+  funcionFavoritos(){
+    let favoritosNuevo= []
+    let favoritosViejo = JSON.parse(localStorage.getItem(this.props.type))
+    if (favoritosViejo!== null) {
+          favoritosNuevo = favoritosViejo
+        }
+
+
+
+    if (this.state.estadoFavorito===false) {
+          favoritosNuevo.push (this.props.id)
+      
+    } else {
+      favoritosNuevo= favoritosNuevo.filter(elm => elm !== this.props.id)
+      
+
+    }
+
+
+    console.log (favoritosNuevo)
+    this.setState({
+      estadoFavorito: !this.state.estadoFavorito
+    })
+    localStorage.setItem(this.props.type, JSON.stringify(favoritosNuevo))
+  }
   render() {
     return (
       <section>
@@ -41,8 +80,15 @@ class Card extends Component {
               {this.state.mostrarDescripcion && (
                 <p>{this.props.descripcion}</p>
               )}
+
+
             </>
           )}
+            <button onClick={() => this.funcionFavoritos()}>
+                {this.state.estadoFavorito
+                  ? "Quitar de favoritos"
+                  : "agregar a favoritos"}
+              </button>
         </div>
       </section>
     );

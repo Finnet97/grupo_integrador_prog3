@@ -1,6 +1,74 @@
-function Favourites(params) {
-    return <div>Series</div>;
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import Card from '../../components/Card/Card';
+
+const api_key = "81720e942b917284685b4ca30d46b061";
+const api_url = "https://api.themoviedb.org/3";
+
+
+
+class Favourites extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      items: []
+    };
+  }
+
+  componentDidMount() {
+     let favoritos = JSON.parse(localStorage.getItem("movie"))
+
+    if (favoritos !==null) {
     
+    for (let i = 0; i < favoritos.length; i++) {
+        let id = favoritos[i];
+        let url = `${api_url}/movie/${id}?api_key=${api_key}&language=es-AR`;
+       
+        console.log(url)
+
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        let newArray= this.state.items
+        newArray.push(data)
+        this.setState({items: newArray})
+      })
+      .catch((err) => console.log(err));
+           
+    }
+        
+
+    }
+    console.log (this.state.items)
+
+
+  }
+
+  render() {
+    const { items } = this.state;
+
+    return (
+      <section className="home-block">
+        <div className="home-block__header">
+          <h2>"Peliculas favoritas"</h2>
+        
+        </div>
+
+        <div className="cards-grid">
+          {items.map((movie) => (
+            <Card
+              key={movie.id}
+              id={movie.id}
+              type= "movie"
+              title={movie.title || movie.name}
+              image={movie.poster_path}
+              descripcion={movie.overview}
+            />
+          ))}
+        </div>
+      </section>
+    );
+  }
 }
 
 export default Favourites;
