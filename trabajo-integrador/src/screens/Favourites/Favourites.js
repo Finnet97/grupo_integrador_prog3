@@ -16,12 +16,12 @@ class Favourites extends Component {
   }
 
   componentDidMount() {
-     let favoritos = JSON.parse(localStorage.getItem("movie"))
+     let favoritosMovie = JSON.parse(localStorage.getItem("movie"))
 
-    if (favoritos !==null) {
+    if (favoritosMovie !==null) {
     
-    for (let i = 0; i < favoritos.length; i++) {
-        let id = favoritos[i];
+    for (let i = 0; i < favoritosMovie.length; i++) {
+        let id = favoritosMovie[i];
         let url = `${api_url}/movie/${id}?api_key=${api_key}&language=es-AR`;
        
         console.log(url)
@@ -40,7 +40,6 @@ class Favourites extends Component {
 
     }
     console.log (this.state.items)
-
 
   }
 //falta series favoritas, solo tenemos movies favoritas
