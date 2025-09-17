@@ -11,7 +11,8 @@ class Favourites extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: []
+      items: [],
+      itemsTv: []
     };
   }
 
@@ -42,11 +43,37 @@ class Favourites extends Component {
     }
     }
     console.log (this.state.items)
+    let favoritosTv = JSON.parse(localStorage.getItem("tv"))
+
+  if (favoritosTv !==null) {
+    
+    for (let i = 0; i < favoritosTv.length; i++) {
+        let idTv = favoritosTv[i];
+        if (idTv) {
+          let urlTv = `${api_url}/tv/${idTv}?api_key=${api_key}&language=es-AR`;
+       
+        console.log(urlTv)
+
+    fetch(urlTv)
+      .then((res) => res.json())
+      .then((data) => {
+        let arrayTv= this.state.itemsTv
+        arrayTv.push(data)
+        this.setState({itemsTv: arrayTv})
+      })
+      .catch((err) => console.log(err));
+           
+    }
+        
+
+    }
+    }
+    console.log (this.state.itemsTv)
 
   }
 //falta series favoritas, solo tenemos movies favoritas
   render() {
-    const { items } = this.state;
+    const { items, itemsTv } = this.state;
 
     return (
       <section className="home-block">
@@ -65,6 +92,23 @@ class Favourites extends Component {
               title={movie.title || movie.name}
               image={movie.poster_path}
               descripcion={movie.overview}
+            />
+          ))}
+        </div>
+                <div className="home-block__header">
+          <h2>"Series favoritas"</h2>
+        
+        </div>
+
+        <div className="cards-grid">
+          {itemsTv.map((tv) => (
+            <Card
+              key={tv.id}
+              id={tv.id}
+              type= "tv"
+              title={tv.title || tv.name}
+              image={tv.poster_path}
+              descripcion={tv.overview}
             />
           ))}
         </div>
