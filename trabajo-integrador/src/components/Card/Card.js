@@ -23,7 +23,7 @@ if(favoritos!==null){
   }
 }
 
-  toggleDescripcion() {
+  VerDescripcion() {
     this.setState({
       mostrarDescripcion: !this.state.mostrarDescripcion
     });
@@ -71,7 +71,7 @@ if(favoritos!==null){
 
           {this.props.descripcion && (
             <>
-              <button onClick={() => this.toggleDescripcion()}>
+              <button onClick={() => this.VerDescripcion()}>
                 {this.state.mostrarDescripcion
                   ? "Ocultar descripción"
                   : "Ver descripción"}

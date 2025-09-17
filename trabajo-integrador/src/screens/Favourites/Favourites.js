@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import Card from '../../components/Card/Card';
+import Header from "../../components/Header/Header";
 
 const api_key = "81720e942b917284685b4ca30d46b061";
 const api_url = "https://api.themoviedb.org/3";
@@ -43,12 +43,13 @@ class Favourites extends Component {
 
 
   }
-
+//falta series favoritas, solo tenemos movies favoritas
   render() {
     const { items } = this.state;
 
     return (
       <section className="home-block">
+        <Header />
         <div className="home-block__header">
           <h2>"Peliculas favoritas"</h2>
         

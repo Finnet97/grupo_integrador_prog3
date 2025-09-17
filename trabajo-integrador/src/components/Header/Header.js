@@ -10,11 +10,15 @@ function Header() {
         <h1 className="brand-name">BeWatch</h1>
       </div>
       <nav>
-        <ul className="main-nav">
+         <ul className="main-nav">
           <li><Link to="/">Home</Link></li>
-          <li><Link to="/movies">Movies</Link></li>
-          <li><Link to="/series">Series</Link></li>
-          <li><Link to="/favourites">Favourites</Link></li>
+
+          <li><Link to="/seeall/movie/popular">Películas populares</Link></li>
+          <li><Link to="/seeall/movie/now_playing">Películas en cartel</Link></li>
+
+          <li><Link to="/seeall/tv/popular">Series populares</Link></li>
+          <li><Link to="/seeall/tv/airing_today">Series al aire hoy</Link></li>
+          <li><Link to="/favourites">Favoritos</Link></li>
         </ul>
       </nav>
     </header>

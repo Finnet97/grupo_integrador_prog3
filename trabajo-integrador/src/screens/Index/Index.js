@@ -10,21 +10,20 @@ function Index() {
     <>
       <Header />
       <main>
-        <Cards title="Peliculas populares" type="movie" endpoint="popular" seeAllPath="/movies"/>
+        <Cards title="Peliculas populares" type="movie" endpoint="popular" seeAllPath="/seeall/movie/popular"/>
       </main>
 
       <main>
-        <Cards title="Películas en cartel"  type="movie" endpoint="now_playing" seeAllPath="/movies"/>
+        <Cards title="Películas en cartel"  type="movie" endpoint="now_playing" seeAllPath="/seeall/movie/now_playing"/>
       </main>
 
       <main>
-        <Cards title="Series populares" type="tv" endpoint="popular" seeAllPath="/series" />
+        <Cards title="Series populares" type="tv" endpoint="popular" seeAllPath="/seeall/tv/popular" />
       </main>
 
       <main>
-        <Cards title="Series al aire hoy" type="tv" endpoint="airing_today" seeAllPath="/series"/>
+        <Cards title="Series al aire hoy" type="tv" endpoint="airing_today" seeAllPath="/seeall/tv/airing_today"/>
       </main>
-
       <Footer />
     </>
   );

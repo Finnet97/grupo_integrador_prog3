@@ -1,0 +1,19 @@
+.boton-cargar {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  text-align: center;
+  size: 50px;
+}
+
+.btn {
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #005bb5;
+}

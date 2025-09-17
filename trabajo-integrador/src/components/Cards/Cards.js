@@ -16,7 +16,7 @@ class Cards extends Component {
 
   componentDidMount() {
     const { type = "movie", endpoint = "popular" } = this.props;
-    const url = `${api_url}/${type}/${endpoint}?api_key=${api_key}&language=es-AR`;
+    const url = `${api_url}/${type}/${endpoint}?api_key=${api_key}`;
 
     fetch(url)
       .then((res) => res.json())
@@ -25,8 +25,9 @@ class Cards extends Component {
   }
 
   render() {
-    const { title = "", seeAllPath } = this.props;
-    const { items } = this.state;
+    const title = this.props.title ? this.props.title : "";
+    const seeAllPath = this.props.seeAllPath;
+    const items = this.state.items;
 
     return (
       <section className="home-block">
