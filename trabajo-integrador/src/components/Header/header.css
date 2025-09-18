@@ -89,7 +89,7 @@ a {
 
 .search-input::placeholder { color: #6b7280; }
 
-.search-form::before {
+/* .search-form::before {
   content: "";
   position: absolute;
   left: 14px;                    
@@ -110,4 +110,36 @@ a {
   overflow: hidden;
   clip: rect(0,0,0,0);
   white-space: nowrap; border: 0;
+} */
+
+@media (max-width: 640px) {
+.brand {
+  width:10%;
+  margin-right: 10%;
+
 }
+.brand-name {
+  display: none
+}
+
+  .main-nav { 
+    flex-wrap: wrap; 
+    justify-content: center; 
+  }
+  .main-nav a { 
+    font-size: 10%;
+   }
+  .search-form { 
+    width: 60%;
+    order: 3;
+    margin-left: 5%;
+    height: 20%;
+
+  }
+
+  .search-input {
+    font-size: small;
+  
+  }
+}
+
