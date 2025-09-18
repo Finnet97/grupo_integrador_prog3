@@ -7,7 +7,7 @@ function Header() {
     <header className="site-header">
       <div className="brand">
         <a href="/">
-          <img src="/imagenes/BeWatch_logo.png" alt="BeWatch" className="logo" />
+          <img src="/img/BeWatch_logo.png" alt="BeWatch" className="logo" />
           <h1 className="brand-name">BeWatch</h1>
         </a>
       </div>
