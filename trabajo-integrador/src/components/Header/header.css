@@ -89,17 +89,13 @@ a {
 
 .search-input::placeholder { color: #6b7280; }
 
-/* .search-form::before {
+.search-form::before {
   content: "";
   position: absolute;
   left: 14px;                    
   width: 18px;
   height: 18px;
-  background:
-    url('data:image/svg+xml;utf8,\
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">\
-<path fill="%238A8FA6" d="M11 4a7 7 0 1 0 4.95 11.95l4.6 4.6 1.4-1.4-4.6-4.6A7 7 0 0 0 11 4Zm0 2a5 5 0 1 1 0 10 5 5 0 0 1 0-10Z"/></svg>'
-  ) no-repeat center / contain;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%238A8FA6' d='M11 4a7 7 0 1 0 4.95 11.95l4.6 4.6 1.4-1.4-4.6-4.6A7 7 0 0 0 11 4Zm0 2a5 5 0 1 1 0 10 5 5 0 0 1 0-10Z'/></svg>") no-repeat center / contain;
   pointer-events: none;
 }
 
@@ -110,7 +106,7 @@ a {
   overflow: hidden;
   clip: rect(0,0,0,0);
   white-space: nowrap; border: 0;
-} */
+}
 
 @media (max-width: 640px) {
 .brand {
