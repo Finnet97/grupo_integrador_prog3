@@ -48,6 +48,10 @@ class Card extends Component {
       estadoFavorito: !this.state.estadoFavorito
     })
     localStorage.setItem(this.props.type, JSON.stringify(favoritosNuevo))
+
+    if (this.state.estadoFavorito && this.props.onRemove) {
+      this.props.onRemove(this.props.id);
+    }
   }
   render() {
     return (
@@ -58,7 +62,7 @@ class Card extends Component {
             alt={this.props.title}
           />
           <h4>
-            <Link to={`/movie/id/${this.props.id}`}>
+            <Link to={`/${this.props.type}/id/${this.props.id}`}>
               {this.props.title}
             </Link>
           </h4>
