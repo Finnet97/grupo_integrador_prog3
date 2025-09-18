@@ -38,3 +38,15 @@
     font-weight: 600;
     margin-top: 10px;
 }
+
+h2 {
+  display: flex;
+  background: #8d8ed3;
+  border-radius: 7px;
+  padding: 8px;
+  justify-content: center;
+  width: 25%;
+  margin: 15px;
+  color: #1366cc;
+  border: black solid 4px;
+}

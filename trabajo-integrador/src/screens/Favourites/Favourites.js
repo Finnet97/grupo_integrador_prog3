@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Card from '../../components/Card/Card';
 import Header from "../../components/Header/Header";
+import "./favourites.css";
 
 const api_key = "81720e942b917284685b4ca30d46b061";
 const api_url = "https://api.themoviedb.org/3";
@@ -79,7 +80,7 @@ class Favourites extends Component {
       <section className="home-block">
         <Header />
         <div className="home-block__header">
-          <h2>"Peliculas favoritas"</h2>
+          <h2 className="favstitle">Peliculas favoritas</h2>
         
         </div>
 
@@ -96,7 +97,7 @@ class Favourites extends Component {
           ))}
         </div>
                 <div className="home-block__header">
-          <h2>"Series favoritas"</h2>
+          <h2 className="favstitle">Series favoritas</h2>
         
         </div>
 
