@@ -6,8 +6,10 @@ function Header() {
   return (
     <header className="site-header">
       <div className="brand">
-        <img src="/imagenes/BeWatch_logo.png" alt="BeWatch" className="logo" />
-        <h1 className="brand-name">BeWatch</h1>
+        <a href="/">
+          <img src="/imagenes/BeWatch_logo.png" alt="BeWatch" className="logo" />
+          <h1 className="brand-name">BeWatch</h1>
+        </a>
       </div>
 
       <form className="search-form" action="/SearchResults" method="get" role="search" aria-label="Buscar en BeWatch">

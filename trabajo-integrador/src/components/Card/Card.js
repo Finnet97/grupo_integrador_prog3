@@ -11,17 +11,17 @@ class Card extends Component {
     };
   }
 
-  componentDidMount(){
-    let favoritos= JSON.parse(localStorage.getItem(this.props.type))
-if(favoritos!==null){
-    if (favoritos.includes(this.props.id)) {
-      this.setState({
-      estadoFavorito: true
-    })
+  componentDidMount() {
+    let favoritos = JSON.parse(localStorage.getItem(this.props.type))
+    if (favoritos !== null) {
+      if (favoritos.includes(this.props.id)) {
+        this.setState({
+          estadoFavorito: true
+        })
 
+      }
     }
   }
-}
 
   VerDescripcion() {
     this.setState({
@@ -30,26 +30,20 @@ if(favoritos!==null){
   }
 
 
-  funcionFavoritos(){
-    let favoritosNuevo= []
+  funcionFavoritos() {
+    let favoritosNuevo = []
     let favoritosViejo = JSON.parse(localStorage.getItem(this.props.type))
-    if (favoritosViejo!== null) {
-          favoritosNuevo = favoritosViejo
-        }
-
-
-
-    if (this.state.estadoFavorito===false) {
-          favoritosNuevo.push (this.props.id)
-      
-    } else {
-      favoritosNuevo= favoritosNuevo.filter(elm => elm !== this.props.id)
-      
-
+    if (favoritosViejo !== null) {
+      favoritosNuevo = favoritosViejo
     }
 
+    if (this.state.estadoFavorito === false) {
+      favoritosNuevo.push(this.props.id)
+    } else {
+      favoritosNuevo = favoritosNuevo.filter(elm => elm !== this.props.id)
+    }
 
-    console.log (favoritosNuevo)
+    console.log(favoritosNuevo)
     this.setState({
       estadoFavorito: !this.state.estadoFavorito
     })
@@ -80,15 +74,13 @@ if(favoritos!==null){
               {this.state.mostrarDescripcion && (
                 <p>{this.props.descripcion}</p>
               )}
-
-
             </>
           )}
-            <button onClick={() => this.funcionFavoritos()}>
-                {this.state.estadoFavorito
-                  ? "Quitar de favoritos"
-                  : "agregar a favoritos"}
-              </button>
+          <button onClick={() => this.funcionFavoritos()}>
+            {this.state.estadoFavorito
+              ? "Quitar de favoritos"
+              : "agregar a favoritos"}
+          </button>
         </div>
       </section>
     );
