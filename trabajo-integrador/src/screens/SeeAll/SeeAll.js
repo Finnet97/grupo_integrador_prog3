@@ -25,23 +25,24 @@ class SeeAll extends Component {
   componentDidUpdate(prevProps) {
     const typeAnterior = prevProps.match.params.type;
     const endpointAnterior = prevProps.match.params.endpoint;
-
     const typeActual = this.props.match.params.type;
     const endpointActual = this.props.match.params.endpoint;
 
-    // Si cambió el tipo o el endpoint, recargo
     if (typeAnterior !== typeActual || endpointAnterior !== endpointActual) {
-      // reseteo el contador para empezar mostrando 5 otra vez
-      this.setState({ contador: 5, items: [] });
+      // si cambia el type(tv o movie) y el endpoint el contador vuelve a 5 otra vez y se carga toda la info de nuevo
+      this.setState({ items: [], contador: 5 });
       this.cargarDatos(typeActual, endpointActual);
     }
   }
 
   cargarDatos(type, endpoint) {
-    const url = api_url + "/" + type + "/" + endpoint + "?api_key=" + api_key;
+    const url =  api_url + "/" + type + "/" + endpoint + "?api_key=" + api_key + "&language=es-AR";
     fetch(url)
       .then(function(res) { return res.json(); })
-      .then((data) => this.setState({ items: data.results || [] }))
+      .then((data) => {
+        const resultados = data && data.results ? data.results : [];
+        this.setState({ items: resultados });
+      })
       .catch(function(err) { console.log(err); });
   }
 
@@ -51,28 +52,14 @@ class SeeAll extends Component {
 
   render() {
     const type = this.props.match.params.type;
-    const endpoint = this.props.match.params.endpoint;
     const items = this.state.items;
     const contador = this.state.contador;
-// título de la sección según el tipo y endpoint
-    let tituloSeccion = "";
-    if (type === "movie") {
-      if (endpoint === "popular") tituloSeccion = "Películas populares";
-      if (endpoint === "now_playing") tituloSeccion = "Películas en cartel";
-      if (endpoint === "top_rated") tituloSeccion = "Películas mejor valoradas";
-      if (endpoint === "upcoming") tituloSeccion = "Películas próximas";
-    }
-    if (type === "tv") {
-      if (endpoint === "popular") tituloSeccion = "Series populares";
-      if (endpoint === "airing_today") tituloSeccion = "Series al aire hoy";
-      if (endpoint === "top_rated") tituloSeccion = "Series mejor valoradas";
-    }
 
     return (
       <div>
         <Header />
         <main className="container">
-          <h2>{tituloSeccion}</h2>
+          <h2>Resultados</h2>
 
           {items.length === 0 && <p>No hay resultados.</p>}
 
@@ -99,7 +86,7 @@ class SeeAll extends Component {
 
               {contador < items.length && (
                 <div className="boton-cargar">
-                  <button className="btn" onClick={this.cargarMas.bind(this)}>
+                  <button className="btn" onClick={() => this.cargarMas()}>
                     Cargar más
                   </button>
                 </div>

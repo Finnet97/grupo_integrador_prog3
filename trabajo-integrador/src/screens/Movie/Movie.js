@@ -19,16 +19,16 @@ class Movie extends Component {
   }
 
   componentDidMount() {
-    const { id } = this.props.match.params;
+  const id = this.props.match.params.id;
 
-    fetch(`${api_url}/movie/${id}?api_key=${api_key}&language=es-AR`)
-      .then((res) => res.json())
-      .then((data) => this.setState({ movie: data }))
-      .catch((err) => console.log(err));
-  }
+  fetch(api_url + "/movie/" + id + "?api_key=" + api_key + "&language=es-AR")
+    .then(function(res) { return res.json(); })
+    .then((data) => this.setState({ movie: data }))
+    .catch(function(err) { console.log(err); });
+}
 
   render() {
-    const { movie } = this.state;
+    const movie = this.state.movie;
 
     if (!movie) {
       return <p>Cargando…</p>;
