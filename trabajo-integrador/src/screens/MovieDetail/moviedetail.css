@@ -1,0 +1,62 @@
+.detail-wrap{
+  min-height: calc(100svh - 0px);
+  padding: 28px 16px 40px;
+  background: linear-gradient(180deg, #0b1e3a 0%, #071a33 100%);
+  display: grid; place-items: center;
+}
+
+.detail-card{
+  width: min(1024px, 94vw);
+  background: #fff; color: #0b2440;
+  border-radius: 20px;
+  box-shadow: 0 20px 45px rgba(0,0,0,.25), 0 2px 6px rgba(0,0,0,.15);
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 18px;
+  padding: 20px;
+}
+
+.detail-poster{
+  width: 100%; height: auto; border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.18);
+}
+
+.detail-info h1{
+  margin: 0 0 6px; font-size: clamp(22px, 3.2vw, 32px); font-weight: 800;
+}
+.detail-info p{ margin: 6px 0; }
+.detail-info strong{ font-weight: 750; }
+
+/* Responsive */
+@media (max-width: 720px){
+  .detail-card{ grid-template-columns: 1fr; padding: 16px; }
+  .detail-poster{ max-width: 360px; margin: 0 auto; }
+}
+
+.detail-topbar{
+  width: min(1024px, 94vw);
+  margin: 0 auto 10px;
+  display: flex;
+  align-items: center;
+}
+
+.back-btn{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  height: 34px;
+  border-radius: 9999px;
+  background: #8d8ed3;   /* violeta del sitio */
+  color: #0b2440;
+  border: 2px solid rgba(0,0,0,.45);
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform .14s ease, box-shadow .14s ease, filter .12s ease, border-color .12s ease;
+}
+.back-btn:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 12px 26px rgba(0,0,0,.22);
+  border-color: rgba(19,102,204,.6);
+}
+.back-btn:active{ transform: translateY(0); filter: brightness(.98); }

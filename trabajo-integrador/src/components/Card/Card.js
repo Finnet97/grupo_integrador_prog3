@@ -11,17 +11,17 @@ class Card extends Component {
     };
   }
 
-  componentDidMount() {
-    let favoritos = JSON.parse(localStorage.getItem(this.props.type))
-    if (favoritos !== null) {
-      if (favoritos.includes(this.props.id)) {
-        this.setState({
-          estadoFavorito: true
-        })
+  componentDidMount(){
+    let favoritos= JSON.parse(localStorage.getItem(this.props.type))
+if(favoritos!==null){
+    if (favoritos.includes(this.props.id)) {
+      this.setState({
+      estadoFavorito: true
+    })
 
-      }
     }
   }
+}
 
   VerDescripcion() {
     this.setState({
@@ -30,28 +30,30 @@ class Card extends Component {
   }
 
 
-  funcionFavoritos() {
-    let favoritosNuevo = []
+  funcionFavoritos(){
+    let favoritosNuevo= []
     let favoritosViejo = JSON.parse(localStorage.getItem(this.props.type))
-    if (favoritosViejo !== null) {
-      favoritosNuevo = favoritosViejo
-    }
+    if (favoritosViejo!== null) {
+          favoritosNuevo = favoritosViejo
+        }
 
-    if (this.state.estadoFavorito === false) {
-      favoritosNuevo.push(this.props.id)
+
+
+    if (this.state.estadoFavorito===false) {
+          favoritosNuevo.push (this.props.id)
+      
     } else {
-      favoritosNuevo = favoritosNuevo.filter(elm => elm !== this.props.id)
+      favoritosNuevo= favoritosNuevo.filter(elm => elm !== this.props.id)
+      
+
     }
 
-    console.log(favoritosNuevo)
+
+    console.log (favoritosNuevo)
     this.setState({
       estadoFavorito: !this.state.estadoFavorito
     })
     localStorage.setItem(this.props.type, JSON.stringify(favoritosNuevo))
-
-    if (this.state.estadoFavorito && this.props.onRemove) {
-      this.props.onRemove(this.props.id);
-    }
   }
   render() {
     return (
@@ -62,7 +64,7 @@ class Card extends Component {
             alt={this.props.title}
           />
           <h4>
-            <Link to={`/${this.props.type}/id/${this.props.id}`}>
+            <Link to={`/movie/id/${this.props.id}`}>
               {this.props.title}
             </Link>
           </h4>
@@ -78,13 +80,15 @@ class Card extends Component {
               {this.state.mostrarDescripcion && (
                 <p>{this.props.descripcion}</p>
               )}
+
+
             </>
           )}
-          <button onClick={() => this.funcionFavoritos()}>
-            {this.state.estadoFavorito
-              ? "Quitar de favoritos"
-              : "agregar a favoritos"}
-          </button>
+            <button onClick={() => this.funcionFavoritos()}>
+                {this.state.estadoFavorito
+                  ? "Quitar de favoritos"
+                  : "agregar a favoritos"}
+              </button>
         </div>
       </section>
     );
