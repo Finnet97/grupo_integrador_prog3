@@ -1,41 +1,46 @@
-.loading-wrap{
-  min-height: calc(100svh - 0px);
-  padding: 28px 16px 40px;
-  display: grid;
-  place-items: center;
-  background: linear-gradient(180deg, #0b1e3a 0%, #071a33 100%);
+/* Contenedor centrado a pantalla completa */
+.loading-wrap {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: #0b1e3a;
 }
 
-.loading-card{
-  width: min(880px, 92vw);
+/* Tarjeta central */
+.loading-card {
+  max-width: 800px;
+  width: 100%;
   background: #fff;
   color: #0b2440;
-  border-radius: 20px;
-  padding: 24px 20px;
+  border-radius: 16px;
+  padding: 20px;
   text-align: center;
-  box-shadow: 0 20px 45px rgba(0,0,0,0.25), 0 2px 6px rgba(0,0,0,0.15);
 }
 
-
-.loading-gif{
-  width: 64px;
-  height: 64px;
-  margin: 2px auto 10px;
+.loading-gif {
+  width: 60px;
+  height: 60px;
+  margin: 12px;
   display: block;
 }
 
-.loading-title{
+.loading-title {
   margin: 0 0 6px;
-  font-weight: 800;
-  letter-spacing: -0.01em;
+  font-weight: 700;
+  font-size: 20px;
 }
 
-.loading-text{
+.loading-text {
   margin: 0;
   color: #6b7280;
+  font-size: 14px;
 }
 
-/* Responsive */
-@media (max-width:640px){
-  .loading-card{ border-radius: 16px; padding: 18px 14px; }
+@media (max-width: 640px) {
+  .loading-card {
+    padding: 16px;
+    border-radius: 12px;
+  }
 }
