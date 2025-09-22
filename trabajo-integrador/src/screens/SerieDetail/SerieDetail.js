@@ -20,13 +20,7 @@ class SerieDetail extends Component {
     }
 
     render() {
-        const { loading, error, tv } = this.state;
-        if (loading) return <h3 style={{ color: "#fff", padding: "24px" }}>Cargando…</h3>;
-        if (error || !tv) return <h3 style={{ color: "#fff", padding: "24px" }}>No se pudo cargar.</h3>;
-
-        const poster = tv.poster_path
-            ? `https://image.tmdb.org/t/p/w500${tv.poster_path}`
-            : "/img/poster_fallback.jpg";
+        const poster = tv.poster_path ? `https://image.tmdb.org/t/p/w500${tv.poster_path}` : "/img/poster_fallback.jpg";
 
         const creators = (tv.created_by || []).map(c => c.name).join(" · ") || "No disponible";
 

@@ -19,16 +19,9 @@ class MovieDetail extends Component {
     }
 
     render() {
-        const { loading, error, movie } = this.state;
-        if (loading) return <h3 style={{ color: "#fff", padding: "24px" }}>Cargando…</h3>; // o tu <Loading />
-        if (error || !movie) return <h3 style={{ color: "#fff", padding: "24px" }}>No se pudo cargar.</h3>;
+        const poster = movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : "/img/poster_fallback.jpg";
 
-        const poster = movie.poster_path
-            ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-            : "/img/poster_fallback.jpg";
-
-        const director =
-            movie.credits?.crew?.find((p) => p.job === "Director")?.name || "No disponible";
+        const director = movie.credits?.crew?.find((p) => p.job === "Director")?.name || "No disponible";
 
         return (
             <main className="detail-wrap">
