@@ -1,29 +1,18 @@
-:root{
-  --brand: #1366cc;
-  --bg-d1: #0b1e3a;
-  --bg-d2: #071a33;
-  --card: #ffffff;
-  --ink: #0f172a;
-  --muted: #6b7280;
-  --ring: rgba(19,102,204,0.18);
-}
-
 /* Contenedor a pantalla completa, centrado */
 .nf-wrap{
   min-height: calc(100svh - 0px); /* si tu header es fixed, reemplaza 0px por su altura */
   padding: 32px 16px 48px;
   display: grid;
   place-items: center;
-  background: linear-gradient(180deg, var(--bg-d1) 0%, var(--bg-d2) 100%);
+  background: linear-gradient(180deg, #0b1e3a 0%, #071a33 100%);
   position: relative;
-  overflow: hidden;
 }
 
 /* Tarjeta central */
 .nf-card{
   width: min(880px, 92vw);
-  background: var(--card);
-  color: var(--ink);
+  background: #fff;
+  color: #0f172a;
   border-radius: 20px;
   padding: 28px 24px;
   box-shadow: 0 20px 45px rgba(0,0,0,0.25), 0 2px 6px rgba(0,0,0,0.15);
@@ -34,11 +23,8 @@
 .nf-code{
   font-size: clamp(42px, 7vw, 86px);
   font-weight: 800;
-  line-height: 1;
   letter-spacing: -0.02em;
-  background: linear-gradient(90deg, #8d8ed3, var(--brand));
-  -webkit-background-clip: text;
-  background-clip: text;
+  background: linear-gradient(90deg, #8d8ed3, #1366cc);
   color: transparent;
   margin-bottom: 8px;
 }
@@ -52,7 +38,7 @@
 .nf-text{
   margin: 0 auto 18px;
   max-width: 56ch;
-  color: var(--muted);
+  color: #6b7280;
 }
 
 /* Acciones */
@@ -60,7 +46,6 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
   margin-bottom: 16px;
 }
 
@@ -74,23 +59,18 @@
   border-radius: 10px;
   font-weight: 700;
   text-decoration: none;
-  transition: transform .06s ease, filter .12s ease, box-shadow .12s ease;
 }
 
 .btn-primary{
-  background: var(--brand);
+  background: #1366cc;
   color: #fff;
   box-shadow: 0 8px 20px rgba(19,102,204,0.35);
 }
-.btn-primary:hover{ filter: brightness(1.06); }
-.btn-primary:active{ transform: translateY(1px); }
 
 .btn-ghost{
   background: #f3f4f6;
   color: #1f2937;
 }
-.btn-ghost:hover{ filter: brightness(0.98); }
-.btn-ghost:active{ transform: translateY(1px); }
 
 /* Buscador dentro de la tarjeta — reusa tus clases existentes */
 .nf-search{
@@ -103,20 +83,17 @@
 
 /* Label accesible ya lo tenés en tu CSS global, por si no: */
 .sr-only{
-  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
-  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+  position: absolute;
+   width: 1px; 
+  height: 1px; 
+  padding: 0; 
+  margin: -1px;
 }
 
 /* Decoración de fondo (burbujas suaves) */
 .nf-decoration{
   position: absolute;
-  inset: -20% -10% auto auto;
   width: 70vmin; height: 70vmin;
-  background:
-    radial-gradient(40% 40% at 30% 30%, rgba(141,142,211,0.35) 0%, transparent 70%),
-    radial-gradient(30% 30% at 80% 20%, rgba(19,102,204,0.35) 0%, transparent 70%);
-  filter: blur(30px);
-  pointer-events: none;
 }
 
 /* Responsive tweaks */

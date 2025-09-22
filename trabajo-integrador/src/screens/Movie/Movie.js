@@ -21,7 +21,7 @@ class Movie extends Component {
   componentDidMount() {
   const id = this.props.match.params.id;
 
-  fetch(api_url + "/movie/" + id + "?api_key=" + api_key + "&language=es-AR")
+  fetch(api_url + "/movie/" + id + "?api_key=" + api_key)
     .then(function(res) { return res.json(); })
     .then((data) => this.setState({ movie: data }))
     .catch(function(err) { console.log(err); });

@@ -17,7 +17,7 @@ class SerieDetail extends Component {
 
     componentDidMount() {
         const id = this.props.match.params.id;
-        const url = API + "/tv/" + id + "?api_key=" + KEY + "&language=es-AR";
+        const url = API + "/tv/" + id + "?api_key=" + KEY;
 
         fetch(url)
             .then(res => res.json())
@@ -47,17 +47,13 @@ class SerieDetail extends Component {
             return <main className="detail-wrap"><p>No hay datos para mostrar.</p></main>;
         }
 
-        const poster = tv.poster_path ? IMG + tv.poster_path : "/img/poster_fallback.jpg";
+        const poster = IMG + tv.poster_path;
 
         const titulo = tv.name ? tv.name : "—";
         const lanzamiento = tv.first_air_date ? tv.first_air_date : "—";
         const rating = (tv.vote_average || tv.vote_average === 0) ? tv.vote_average : "—";
         const sinopsis = tv.overview ? tv.overview : "—";
 
-        let duracion = "No disponible";
-        if (tv.episode_run_time && tv.episode_run_time.length > 0) {
-            duracion = tv.episode_run_time[0] + " min";
-        }
 
         let generos = [];
         if (tv.genres && tv.genres.length > 0) {
@@ -79,7 +75,6 @@ class SerieDetail extends Component {
                         <h1>{titulo}</h1>
                         <p><strong>Lanzamiento:</strong> {lanzamiento}</p>
                         <p><strong>Rating:</strong> {rating}</p>
-                        <p><strong>Duración de episodios:</strong> {duracion}</p>
                         <p><strong>Overview:</strong> {sinopsis}</p>
                         <p><strong>Géneros:</strong> {generos.length > 0 ? generos.join(" · ") : "—"}</p>
                     </div>

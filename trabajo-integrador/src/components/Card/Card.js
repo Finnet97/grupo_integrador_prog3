@@ -55,9 +55,9 @@ if(favoritos!==null){
     })
     localStorage.setItem(this.props.type, JSON.stringify(favoritosNuevo))
 
-  //    if (this.state.estadoFavorito && this.props.onRemove) {
-  //   this.props.onRemove(this.props.id);
-  // }
+      if (this.state.estadoFavorito && this.props.onRemove) {
+        this.props.onRemove(this.props.id);
+   }
   }
   render() {
     return (
@@ -68,7 +68,7 @@ if(favoritos!==null){
             alt={this.props.title}
           />
           <h4>
-            <Link to={`/movie/id/${this.props.id}`}>
+            <Link to={`/${this.props.type}/id/${this.props.id}`}>
               {this.props.title}
             </Link>
           </h4>
@@ -76,9 +76,7 @@ if(favoritos!==null){
           {this.props.descripcion && (
             <>
               <button onClick={() => this.VerDescripcion()}>
-                {this.state.mostrarDescripcion
-                  ? "Ocultar descripción"
-                  : "Ver descripción"}
+                {this.state.mostrarDescripcion ? "Ocultar descripción" : "Ver descripción"}
               </button>
 
               {this.state.mostrarDescripcion && (
@@ -89,9 +87,7 @@ if(favoritos!==null){
             </>
           )}
             <button onClick={() => this.funcionFavoritos()}>
-                {this.state.estadoFavorito
-                  ? "Quitar de favoritos"
-                  : "agregar a favoritos"}
+                {this.state.estadoFavorito ? "Quitar de favoritos"  : "agregar a favoritos"}
               </button>
         </div>
       </section>
