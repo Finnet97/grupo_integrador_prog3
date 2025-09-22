@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 import "./moviedetail.css";
 
 const API = "https://api.themoviedb.org/3";
@@ -11,12 +13,15 @@ class MovieDetail extends Component {
         this.state = {
             loading: true,
             error: null,
-            movie: null
+            movie: null,
+            estadoFavorito: false
         };
     }
 
     componentDidMount() {
-        const id = this.props.match.params.id;
+        const id = this.props.match.params.id;           // id de la URL (string)
+        const idNum = Number(id);                         // lo pasamos a número
+
         const url = API + "/movie/" + id + "?api_key=" + KEY;
 
         fetch(url)
@@ -28,6 +33,37 @@ class MovieDetail extends Component {
                 console.log(err);
                 this.setState({ movie: null, loading: false, error: "Error al cargar" });
             });
+
+        
+        const guardados = JSON.parse(localStorage.getItem("movie")) || [];
+        
+        const esta = guardados.includes(idNum) || guardados.includes(id); 
+        if (esta) {
+            this.setState({ estadoFavorito: true });
+        }
+    }
+
+    funcionFavoritos() {
+        const id = this.props.match.params.id;
+        const idNum = Number(id);
+        const key = "movie";
+
+        // Leo losfavoritos actuales
+        let favoritos = JSON.parse(localStorage.getItem(key)) || [];
+
+        if (this.state.estadoFavorito === false) {
+            // Agregar
+            if (!favoritos.includes(idNum) && !favoritos.includes(id)) {
+                favoritos.push(idNum); 
+            }
+        } else {
+            favoritos = favoritos.filter(function (item) {
+                return item !== idNum && item !== id; 
+            });
+        }
+
+        localStorage.setItem(key, JSON.stringify(favoritos));
+        this.setState({ estadoFavorito: !this.state.estadoFavorito });
     }
 
     render() {
@@ -60,26 +96,34 @@ class MovieDetail extends Component {
         }
 
         return (
-            <main className="detail-wrap">
-                <div className="detail-topbar">
-                    <a href="/" className="back-btn">
-                        <p>←</p>
-                        <span>Atrás</span>
-                    </a>
-                </div>
-
-                <section className="detail-card">
-                    <img className="detail-poster" src={poster} alt={titulo} />
-                    <div className="detail-info">
-                        <h1>{titulo}</h1>
-                        <p><strong>Fecha:</strong> {fecha}</p>
-                        <p><strong>Rating:</strong> {rating}</p>
-                        <p><strong>Duración:</strong> {duracion}</p>
-                        <p><strong>Sinopsis:</strong> {sinopsis}</p>
-                        <p><strong>Géneros:</strong> {generos.length > 0 ? generos.join(" · ") : "—"}</p>
+            <React.Fragment>
+                <Header />
+                <main className="detail-wrap">
+                    <div className="detail-topbar">
+                        <a href="/" className="back-btn">
+                            <p>←</p>
+                            <span>Atrás</span>
+                        </a>
                     </div>
-                </section>
-            </main>
+
+                    <section className="detail-card">
+                        <img className="detail-poster" src={poster} alt={titulo} />
+                        <div className="detail-info">
+                            <h1>{titulo}</h1>
+                            <p><strong>Fecha:</strong> {fecha}</p>
+                            <p><strong>Rating:</strong> {rating}</p>
+                            <p><strong>Duración:</strong> {duracion}</p>
+                            <p><strong>Sinopsis:</strong> {sinopsis}</p>
+                            <p><strong>Géneros:</strong> {generos.length > 0 ? generos.join(" · ") : "—"}</p>
+                            <button onClick={() => this.funcionFavoritos()}>
+                                {this.state.estadoFavorito ? "Quitar de favoritos" : "agregar a favoritos"}
+                            </button>
+                        </div>
+                    </section>
+
+                </main>
+                <Footer />
+            </React.Fragment>
         );
     }
 }
