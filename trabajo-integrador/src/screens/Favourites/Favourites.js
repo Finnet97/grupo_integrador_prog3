@@ -18,17 +18,17 @@ class Favourites extends Component {
   }
 
 //hago que se, al quitar una pelicula o serie, se filtre el array correspondiente quitando esa y actualizando el estado
-  removeFavourite(type, id) {
-  if (type === "movie") {
-    let newArray = this.state.items.filter(m => m.id !== id);
-    this.setState({ items: newArray });
-  }
+//   removeFavourite(type, id) {
+//   if (type === "movie") {
+//     let newArray = this.state.items.filter(m => m.id !== id);
+//     this.setState({ items: newArray });
+//   }
 
-  if (type === "tv") {
-    let newArrayTv = this.state.itemsTv.filter(t => t.id !== id);
-    this.setState({ itemsTv: newArrayTv });
-  }
-}
+//   if (type === "tv") {
+//     let newArrayTv = this.state.itemsTv.filter(t => t.id !== id);
+//     this.setState({ itemsTv: newArrayTv });
+//   }
+// }
 
   componentDidMount() {
 
@@ -41,7 +41,7 @@ class Favourites extends Component {
     for (let i = 0; i < favoritosMovie.length; i++) {
         let id = favoritosMovie[i];
         if (id) { //chequeo que el id sea valido
-          let url = `${api_url}/movie/${id}?api_key=${api_key}&language=es-AR`;
+          let url = `${api_url}/movie/${id}?api_key=${api_key}`;
        
         console.log(url)
 
@@ -71,7 +71,7 @@ class Favourites extends Component {
     for (let i = 0; i < favoritosTv.length; i++) {
         let idTv = favoritosTv[i];
         if (idTv) { //chequeo que el idTv sea valido
-          let urlTv = `${api_url}/tv/${idTv}?api_key=${api_key}&language=es-AR`;
+          let urlTv = `${api_url}/tv/${idTv}?api_key=${api_key}`;
        
         console.log(urlTv)
 
@@ -114,7 +114,7 @@ class Favourites extends Component {
               title={movie.title || movie.name}
               image={movie.poster_path}
               descripcion={movie.overview}
-              onRemove={(id) => this.removeFavourite("movie", id)} //llama a removeFavourite para que al clickear quitar, se borre esa pelicula de la lista
+              // onRemove={(id) => this.removeFavourite("movie", id)} //llama a removeFavourite para que al clickear quitar, se borre esa pelicula de la lista
             />
           ))}
         </div>
@@ -132,7 +132,7 @@ class Favourites extends Component {
               title={tv.title || tv.name}
               image={tv.poster_path}
               descripcion={tv.overview}
-              onRemove={(id) => this.removeFavourite("tv", id)} //llama a removeFavourite para que al clickear quitar, se borre esa serie de la lista
+              // onRemove={(id) => this.removeFavourite("tv", id)} //llama a removeFavourite para que al clickear quitar, se borre esa serie de la lista
             />
           ))}
         </div>

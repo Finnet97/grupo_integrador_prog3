@@ -54,6 +54,10 @@ if(favoritos!==null){
       estadoFavorito: !this.state.estadoFavorito
     })
     localStorage.setItem(this.props.type, JSON.stringify(favoritosNuevo))
+
+  //    if (this.state.estadoFavorito && this.props.onRemove) {
+  //   this.props.onRemove(this.props.id);
+  // }
   }
   render() {
     return (

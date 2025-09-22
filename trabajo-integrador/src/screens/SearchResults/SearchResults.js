@@ -23,7 +23,7 @@ class SearchResults extends Component {
 
    
     //obtengo la info de cada pelicula que contrenga el parametro de busqueda (en su titulo)  y guardo esa informacion en dataMovies
-    fetch(`https://api.themoviedb.org/3/search/movie?query=${search}&api_key=${api_key}&language=es-AR`)
+    fetch(`https://api.themoviedb.org/3/search/movie?query=${search}&api_key=${api_key}`)
       .then(res => res.json())
       .then(data => {
         this.setState({ dataMovies: data.results });
@@ -31,7 +31,7 @@ class SearchResults extends Component {
       .catch(err => console.log(err));
 
      //obtengo la info de cada serie que contrenga el parametro de busqueda(en su titulo) y guardo esa informacion en dataTv
-    fetch(`https://api.themoviedb.org/3/search/tv?query=${search}&api_key=${api_key}&language=es-AR`)
+    fetch(`https://api.themoviedb.org/3/search/tv?query=${search}&api_key=${api_key}`)
       .then(res => res.json())
       .then(data => {
         this.setState({ dataTv: data.results });
