@@ -3,48 +3,85 @@ import "./seriedetail.css";
 
 const API = "https://api.themoviedb.org/3";
 const KEY = "81720e942b917284685b4ca30d46b061";
-
-// Mismo que la funcion que esta para las peliculas solo que con las series hay que hacer alto quilombo para que se vea bien
-const formatearDuracion = (arr) =>
-    Array.isArray(arr) && arr.length ? `${Math.round(arr.reduce((a, b) => a + b, 0) / arr.length)} min` : "No disponible";
+const IMG = "https://image.tmdb.org/t/p/w500";
 
 class SerieDetail extends Component {
-    state = { loading: true, error: null, tv: null };
+    constructor(props) {
+        super(props);
+        this.state = {
+            loading: true,
+            error: null,
+            tv: null
+        };
+    }
 
     componentDidMount() {
-        const { id } = this.props.match.params;
-        fetch(`${API}/tv/${id}?api_key=${KEY}`)
-            .then((r) => (r.ok ? r.json() : Promise.reject(r)))
-            .then((data) => this.setState({ tv: data, loading: false }))
-            .catch((e) => this.setState({ error: "Error al cargar", loading: false }));
+        const id = this.props.match.params.id;
+        const url = API + "/tv/" + id + "?api_key=" + KEY + "&language=es-AR";
+
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                this.setState({ tv: data, loading: false, error: null });
+            })
+            .catch(err => {
+                console.log(err);
+                this.setState({ tv: null, loading: false, error: "Error al cargar" });
+            });
     }
 
     render() {
-        const poster = tv.poster_path ? `https://image.tmdb.org/t/p/w500${tv.poster_path}` : "/img/poster_fallback.jpg";
+        const loading = this.state.loading;
+        const error = this.state.error;
+        const tv = this.state.tv;
 
-        const creators = (tv.created_by || []).map(c => c.name).join(" · ") || "No disponible";
+        if (loading) {
+            return <main className="detail-wrap"><p>Cargando…</p></main>;
+        }
+
+        if (error) {
+            return <main className="detail-wrap"><p>{error}</p></main>;
+        }
+
+        if (!tv) {
+            return <main className="detail-wrap"><p>No hay datos para mostrar.</p></main>;
+        }
+
+        const poster = tv.poster_path ? IMG + tv.poster_path : "/img/poster_fallback.jpg";
+
+        const titulo = tv.name ? tv.name : "—";
+        const lanzamiento = tv.first_air_date ? tv.first_air_date : "—";
+        const rating = (tv.vote_average || tv.vote_average === 0) ? tv.vote_average : "—";
+        const sinopsis = tv.overview ? tv.overview : "—";
+
+        let duracion = "No disponible";
+        if (tv.episode_run_time && tv.episode_run_time.length > 0) {
+            duracion = tv.episode_run_time[0] + " min";
+        }
+
+        let generos = [];
+        if (tv.genres && tv.genres.length > 0) {
+            generos = tv.genres.map(function (g) { return g.name; });
+        }
 
         return (
             <main className="detail-wrap">
                 <div className="detail-topbar">
-                    <button className="back-btn" onClick={this.handleBack} aria-label="Go back">
-                        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-                            <path d="M15.5 19 8.5 12l7-7" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                        <span>Back</span>
-                    </button>
+                    <a href="/" className="back-btn">
+                        <p>←</p>
+                        <span>Atrás</span>
+                    </a>
                 </div>
 
                 <section className="detail-card">
-                    <img className="detail-poster" src={poster} alt={tv.name} />
+                    <img className="detail-poster" src={poster} alt={titulo} />
                     <div className="detail-info">
-                        <h1>{tv.name}</h1>
-                        <p><strong>Lanzamiento:</strong> {tv.first_air_date || "—"}</p>
-                        <p><strong>Rating:</strong> {tv.vote_average ?? "—"}</p>
-                        <p><strong>Duración de episodios:</strong> {formatearDuracion(tv.episode_run_time)}</p>
-                        <p><strong>Creada por:</strong> {creators}</p>
-                        <p><strong>Overview:</strong> {tv.overview || "—"}</p>
-                        <p><strong>Generos:</strong> {(tv.genres || []).map(g => g.name).join(" · ") || "—"}</p>
+                        <h1>{titulo}</h1>
+                        <p><strong>Lanzamiento:</strong> {lanzamiento}</p>
+                        <p><strong>Rating:</strong> {rating}</p>
+                        <p><strong>Duración de episodios:</strong> {duracion}</p>
+                        <p><strong>Overview:</strong> {sinopsis}</p>
+                        <p><strong>Géneros:</strong> {generos.length > 0 ? generos.join(" · ") : "—"}</p>
                     </div>
                 </section>
             </main>

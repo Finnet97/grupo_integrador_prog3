@@ -3,47 +3,80 @@ import "./moviedetail.css";
 
 const API = "https://api.themoviedb.org/3";
 const KEY = "81720e942b917284685b4ca30d46b061";
-
-// Hecho por chipo, sino los minutos se ven mal
-const formatearMinutos = (m) => (m ? `${m} min` : "No disponible");
+const IMG = "https://image.tmdb.org/t/p/w500";
 
 class MovieDetail extends Component {
-    state = { loading: true, error: null, movie: null };
+    constructor(props) {
+        super(props);
+        this.state = {
+            loading: true,
+            error: null,
+            movie: null
+        };
+    }
 
     componentDidMount() {
-        const { id } = this.props.match.params;
-        fetch(`${API}/movie/${id}?api_key=${KEY}`)
-            .then((r) => (r.ok ? r.json() : Promise.reject(r)))
-            .then((data) => this.setState({ movie: data, loading: false }))
-            .catch((e) => this.setState({ error: "Error al cargar", loading: false }));
+        const id = this.props.match.params.id;
+        const url = API + "/movie/" + id + "?api_key=" + KEY;
+
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                this.setState({ movie: data, loading: false, error: null });
+            })
+            .catch(err => {
+                console.log(err);
+                this.setState({ movie: null, loading: false, error: "Error al cargar" });
+            });
     }
 
     render() {
-        const poster = movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : "/img/poster_fallback.jpg";
+        const loading = this.state.loading;
+        const error = this.state.error;
+        const movie = this.state.movie;
 
-        const director = movie.credits?.crew?.find((p) => p.job === "Director")?.name || "No disponible";
+        if (loading) {
+            return <main className="detail-wrap"><p>Cargando…</p></main>;
+        }
+
+        if (error) {
+            return <main className="detail-wrap"><p>{error}</p></main>;
+        }
+
+        if (!movie) {
+            return <main className="detail-wrap"><p>No hay datos para mostrar.</p></main>;
+        }
+
+        const poster = movie.poster_path ? IMG + movie.poster_path : "/img/poster_fallback.jpg";
+
+        const titulo = movie.title ? movie.title : "—";
+        const fecha = movie.release_date ? movie.release_date : "—";
+        const rating = (movie.vote_average || movie.vote_average === 0) ? movie.vote_average : "—";
+        const duracion = movie.runtime ? movie.runtime + " min" : "No disponible";
+        const sinopsis = movie.overview ? movie.overview : "—";
+        let generos = [];
+        if (movie.genres && movie.genres.length > 0) {
+            generos = movie.genres.map(function (g) { return g.name; });
+        }
 
         return (
             <main className="detail-wrap">
                 <div className="detail-topbar">
-                    <a href="/" className="back-btn" aria-label="Go home">
-                        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-                            <path d="M15.5 19 8.5 12l7-7" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                        <span>Back</span>
+                    <a href="/" className="back-btn">
+                        <p>←</p>
+                        <span>Atrás</span>
                     </a>
                 </div>
 
                 <section className="detail-card">
-                    <img className="detail-poster" src={poster} alt={movie.title} />
+                    <img className="detail-poster" src={poster} alt={titulo} />
                     <div className="detail-info">
-                        <h1>{movie.title}</h1>
-                        <p><strong>Fecha:</strong> {movie.release_date || "—"}</p>
-                        <p><strong>Rating:</strong> {movie.vote_average ?? "—"}</p>
-                        <p><strong>Duración:</strong> {formatearMinutos(movie.runtime)}</p>
-                        <p><strong>Director:</strong> {director}</p>
-                        <p><strong>Overview:</strong> {movie.overview || "—"}</p>
-                        <p><strong>Generos:</strong> {(movie.genres || []).map(g => g.name).join(" · ") || "—"}</p>
+                        <h1>{titulo}</h1>
+                        <p><strong>Fecha:</strong> {fecha}</p>
+                        <p><strong>Rating:</strong> {rating}</p>
+                        <p><strong>Duración:</strong> {duracion}</p>
+                        <p><strong>Sinopsis:</strong> {sinopsis}</p>
+                        <p><strong>Géneros:</strong> {generos.length > 0 ? generos.join(" · ") : "—"}</p>
                     </div>
                 </section>
             </main>
