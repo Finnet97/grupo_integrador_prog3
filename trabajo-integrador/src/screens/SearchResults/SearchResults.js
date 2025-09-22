@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Header from "../../components/Header/Header";
 import Card from "../../components/Card/Card";
+import Footer from "../../components/Footer/Footer";
 
 const api_key = "81720e942b917284685b4ca30d46b061";
 
@@ -62,6 +63,7 @@ class SearchResults extends Component {
 
   render() {
     return (
+    <React.Fragment>
       <section className="home-block">
         <Header />
 
@@ -103,6 +105,8 @@ class SearchResults extends Component {
           ))}
         </div>
       </section>
+      <Footer/>
+      </React.Fragment>
     );
   }
 }

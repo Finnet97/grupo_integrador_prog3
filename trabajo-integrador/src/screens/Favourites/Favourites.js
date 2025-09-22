@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Card from '../../components/Card/Card';
 import Header from "../../components/Header/Header";
 import "./favourites.css";
+import Footer from "../../components/Footer/Footer";
 
 const api_key = "81720e942b917284685b4ca30d46b061";
 const api_url = "https://api.themoviedb.org/3";
@@ -99,6 +100,7 @@ class Favourites extends Component {
     const itemsTv = this.state.itemsTv;
 
     return (
+      <React.Fragment>
       <section className="home-block">
         <Header />
         <div className="home-block__header">
@@ -137,7 +139,9 @@ class Favourites extends Component {
             />
           ))}
         </div>
-      </section>    
+      </section>  
+      <Footer/>
+      </React.Fragment>  
     );
   }
 }
