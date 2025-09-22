@@ -10,6 +10,7 @@ class SearchResults extends Component {
     this.state = {
       dataMovies: [],
       dataTv: [],
+      type: ""
     };
   }
 
@@ -17,11 +18,31 @@ class SearchResults extends Component {
     console.log(this.props);
 
     //recupero la informacion del formulario de busqueda
-    let urlSearch= new URLSearchParams(this.props.location.search);
+    let urlSearch = new URLSearchParams(this.props.location.search);
     let search = urlSearch.get("searchData");
-    console.log(search);
+    let type = urlSearch.get("searchType") || "";
+    this.setState({ type });
+    console.log(search, type);
 
-   
+
+    if (type === "movie") {
+      fetch(`https://api.themoviedb.org/3/search/movie?query=${search}&api_key=${api_key}`)
+        .then(res => res.json())
+        .then(data => this.setState({ dataMovies: data.results || [] }))
+        .catch(err => console.log(err));
+      return;
+    }
+
+
+    if (type === "tv") {
+      fetch(`https://api.themoviedb.org/3/search/tv?query=${search}&api_key=${api_key}`)
+        .then(res => res.json())
+        .then(data => this.setState({ dataTv: data.results || [] }))
+        .catch(err => console.log(err));
+      return;
+    }
+
+
     //obtengo la info de cada pelicula que contrenga el parametro de busqueda (en su titulo)  y guardo esa informacion en dataMovies
     fetch(`https://api.themoviedb.org/3/search/movie?query=${search}&api_key=${api_key}`)
       .then(res => res.json())
@@ -30,7 +51,7 @@ class SearchResults extends Component {
       })
       .catch(err => console.log(err));
 
-     //obtengo la info de cada serie que contrenga el parametro de busqueda(en su titulo) y guardo esa informacion en dataTv
+    //obtengo la info de cada serie que contrenga el parametro de busqueda(en su titulo) y guardo esa informacion en dataTv
     fetch(`https://api.themoviedb.org/3/search/tv?query=${search}&api_key=${api_key}`)
       .then(res => res.json())
       .then(data => {
@@ -52,7 +73,7 @@ class SearchResults extends Component {
           <h3>Películas</h3>
         </div>
         <div className="cards-grid">
-            {/* muestro las peliculas que se encontraron a partir de esa busqueda */}
+          {/* muestro las peliculas que se encontraron a partir de esa busqueda */}
           {this.state.dataMovies.map(movie => (
             <Card
               key={movie.id}
@@ -69,7 +90,7 @@ class SearchResults extends Component {
           <h3>Series</h3>
         </div>
         <div className="cards-grid">
-        {/* muestro las series que se encontraron a partir de esa busqueda */}
+          {/* muestro las series que se encontraron a partir de esa busqueda */}
           {this.state.dataTv.map(tv => (
             <Card
               key={tv.id}

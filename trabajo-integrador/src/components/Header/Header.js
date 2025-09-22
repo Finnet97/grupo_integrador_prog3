@@ -14,7 +14,13 @@ function Header() {
 
       <form className="search-form" action="/SearchResults" method="get" role="search" aria-label="Buscar en BeWatch">
         <label className="sr-only">Buscar</label>
-        <input id="site-search" type="search" name="searchData" placeholder="Buscar..." className="search-input"/>
+        <input id="site-search" type="search" name="searchData" placeholder="Buscar..." className="search-input" />
+        <select name="searchType" defaultValue="" className="search-select">
+          <option value="" >Elegir...</option>
+          <option value="movie">Películas</option>
+          <option value="tv">Series</option>
+        </select>
+        <button type="submit">Buscar</button>
       </form>
 
       <nav>
