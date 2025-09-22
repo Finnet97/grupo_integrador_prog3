@@ -61,7 +61,7 @@ class Card extends Component {
   }
   render() {
     return (
-      <section>
+      <section className="card">
         <div className="character-card">
           <img
             src={`https://image.tmdb.org/t/p/w342${this.props.image}`}

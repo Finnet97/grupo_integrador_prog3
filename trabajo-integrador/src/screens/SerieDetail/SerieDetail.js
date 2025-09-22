@@ -85,10 +85,10 @@ class SerieDetail extends Component {
 
         const poster = IMG + tv.poster_path;
 
-        const titulo = tv.name ? tv.name : "—";
-        const lanzamiento = tv.first_air_date ? tv.first_air_date : "—";
-        const rating = (tv.vote_average || tv.vote_average === 0) ? tv.vote_average : "—";
-        const sinopsis = tv.overview ? tv.overview : "—";
+        const titulo = tv.name;
+        const lanzamiento = tv.first_air_date;
+        const rating = tv.vote_average;
+        const sinopsis = tv.overview;
 
 
         let generos = [];

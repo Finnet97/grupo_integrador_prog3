@@ -16,3 +16,14 @@
 .btn:hover {
   background-color: #005bb5;
 }
+
+h2{
+    margin: 10px;
+    text-align: center;
+    color: #005bb5;
+}
+
+.form-filtro {
+    text-align: center;
+    margin: 20px;
+}

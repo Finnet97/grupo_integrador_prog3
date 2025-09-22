@@ -83,13 +83,13 @@ class MovieDetail extends Component {
             return <main className="detail-wrap"><p>No hay datos para mostrar.</p></main>;
         }
 
-        const poster = movie.poster_path ? IMG + movie.poster_path : "/img/poster_fallback.jpg";
+        const poster = IMG + movie.poster_path;
 
-        const titulo = movie.title ? movie.title : "—";
-        const fecha = movie.release_date ? movie.release_date : "—";
-        const rating = (movie.vote_average || movie.vote_average === 0) ? movie.vote_average : "—";
-        const duracion = movie.runtime ? movie.runtime + " min" : "No disponible";
-        const sinopsis = movie.overview ? movie.overview : "—";
+        const titulo = movie.title;
+        const fecha = movie.release_date;
+        const rating = movie.vote_average;
+        const duracion = movie.runtime + " min";
+        const sinopsis = movie.overview;
         let generos = [];
         if (movie.genres && movie.genres.length > 0) {
             generos = movie.genres.map(function (g) { return g.name; });

@@ -1,75 +1,81 @@
-
 .detail-wrap {
-  min-height: 100vh;
   display: flex;
+  align-items: center;
   justify-content: center;
-  align-items: flex-start;
-  padding: 20px;
+  flex-direction: column;
   background: #0b1e3a;
+  min-height: 100vh;
+  padding: 16px;
 }
 
+/* Barra superior con el botón “Atrás” */
+.detail-topbar {
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto 12px;
+}
 
+.back-btn {
+  display: inline-block;
+  padding: 6px 12px;
+  border: 1px solid #333;
+  border-radius: 16px;
+  background: #8d8ed3;
+  color: #0b2440;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+/* Tarjeta principal del detalle */
 .detail-card {
+  margin: 10px;
+  display: flex;
   max-width: 1000px;
   width: 100%;
   background: #fff;
   color: #0b2440;
   border-radius: 16px;
   padding: 20px;
-  display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
+/* Imagen del póster */
 .detail-poster {
   width: 100%;
-  border-radius: 12px;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  margin-right: 15px;
 }
 
+/* Texto del bloque de info */
 .detail-info h1 {
-  margin: 0 0 8px;
-  font-size: 24px;
+  margin: 8px;
+  font-size: 22px;
   font-weight: 700;
 }
 
 .detail-info p {
-  margin: 6px 0;
+  margin: 6px;
 }
 
 .detail-info strong {
   font-weight: 700;
 }
 
-.detail-topbar {
-  max-width: 1000px;
-  width: 100%;
-  margin: 0 auto 12px;
-  display: flex;
-  align-items: center;
-}
-
-.back-btn {
-  display: inline-flex;
-  align-items: center;
-  padding: 6px 12px;
-  border-radius: 20px;
-  background: #8d8ed3;
-  color: #0b2440;
-  font-weight: 700;
-  border: 1px solid #333;
-}
-
-.back-btn:hover {
-  background: #7b7cc5;
-  color: #fff;
-  border-color: #1366cc;
-}
-
 @media (max-width: 640px) {
-  .detail-card {
-    padding: 16px;
+  .detail-wrap {
+    padding: 12px;
   }
-  .detail-poster {
-    max-width: 300px;
-    margin: 0 auto;
+
+  .detail-card {
+    padding: 12px;
+  }
+
+  .detail-info h1 {
+    font-size: 20px;
   }
 }

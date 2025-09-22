@@ -82,7 +82,6 @@ class SeeAll extends Component {
                     <h2>Resultados</h2>
 
                     <form onSubmit={(event) => this.evitarSubmit(event)} className="form-filtro">
-                        <label>Buscar:</label>
                         <input
                             type="text"
                             placeholder="Filtrar por título…"

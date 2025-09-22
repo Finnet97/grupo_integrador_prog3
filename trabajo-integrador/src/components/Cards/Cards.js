@@ -15,7 +15,9 @@ class Cards extends Component {
   }
 
   componentDidMount() {
-    const { type = "movie", endpoint = "popular" } = this.props;
+    let type = this.props.type ? this.props.type : "movie";
+    let endpoint = this.props.endpoint ? this.props.endpoint : "popular";
+
     const url = `${api_url}/${type}/${endpoint}?api_key=${api_key}`;
 
     fetch(url)
@@ -25,9 +27,8 @@ class Cards extends Component {
   }
 
   render() {
-    const title = this.props.title ? this.props.title : "";
+    const title = this.props.title ? this.props.title : ""; // usamos esto porque puede haber sin titulo
     const seeAllPath = this.props.seeAllPath;
-    const items = this.state.items;
 
     return (
       <section className="home-block">
@@ -42,7 +43,7 @@ class Cards extends Component {
         </div>
 
         <div className="cards-grid">
-          {items.map((movie) => (
+          {this.state.items.map((movie) => (
             <Card
               key={movie.id}
               id={movie.id}

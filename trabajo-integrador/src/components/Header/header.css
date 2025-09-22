@@ -14,7 +14,6 @@ a {
  
 }
 
-/* Marca (logo + nombre) alineados */
 .brand {
   display: flex;
   align-items: center;
@@ -22,9 +21,9 @@ a {
 }
 
 .logo {
-  height: 60px;      /* tamaño razonable */
+  height: 60px;     
   width: auto;
-  border-radius: 50%; /* si tu logo es cuadrado, queda redondito; sacalo si no te gusta */
+  border-radius: 50%; 
 }
 
 .brand-name {
@@ -177,17 +176,17 @@ a {
   }
 
   .search-input {
-    flex: 0.7;   /* ocupa 70% */
+    flex: 0.7;   
     font-size: 0.85rem;
   }
 
   .search-select {
-    flex: 0.3;   /* ocupa 30% */
+    flex: 0.3;  
     font-size: 0.85rem;
   }
 
   .search-form button {
-    width: 100%; /* botón ocupa todo el ancho */
+    width: 100%; 
     font-size: 0.9rem;
   }
 

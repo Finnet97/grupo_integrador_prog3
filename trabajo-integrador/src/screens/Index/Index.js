@@ -7,7 +7,8 @@ import './index.css';
 
 function Index() {
   return (
-    <>
+    <React.Fragment>
+
       <Header />
       <main>
         <Cards title="Peliculas populares" type="movie" endpoint="popular" seeAllPath="/seeall/movie/popular"/>
@@ -25,7 +26,8 @@ function Index() {
         <Cards title="Series al aire hoy" type="tv" endpoint="airing_today" seeAllPath="/seeall/tv/airing_today"/>
       </main>
       <Footer />
-    </>
+      
+    </React.Fragment>
   );
 }
 
