@@ -115,8 +115,8 @@ class SerieDetail extends Component {
                             <p><strong>Rating:</strong> {rating}</p>
                             <p><strong>Overview:</strong> {sinopsis}</p>
                             <p><strong>Géneros:</strong> {generos.length > 0 ? generos.join(" · ") : "—"}</p>
-                            <button onClick={() => this.funcionFavoritos()}>
-                                {this.state.estadoFavorito ? "Quitar de favoritos" : "agregar a favoritos"}
+                            <button className="btn-fav" onClick={() => this.funcionFavoritos()}>
+                                {this.state.estadoFavorito ? "Quitar de favoritos" : "Agregar a favoritos"}
                             </button>
                         </div>
                     </section>

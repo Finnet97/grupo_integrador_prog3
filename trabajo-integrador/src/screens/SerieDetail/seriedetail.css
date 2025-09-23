@@ -31,7 +31,6 @@
   margin: 6px 0;
 }
 
-
 .detail-topbar {
   max-width: 1000px;
   width: 100%;
@@ -56,6 +55,22 @@
   color: #fff;
 }
 
+.btn-fav{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  height: 38px;
+  border-radius: 10px;
+  border: 1px solid #0b2440;   /* tinta */
+  background: #1366cc;         /* azul marca */
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  line-height: 1;
+  cursor: pointer;
+  text-decoration: none;        /* por si un día es <a> */
+}
 
 @media (max-width: 640px) {
   .detail-card {
