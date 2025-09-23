@@ -36,7 +36,7 @@ class SeeAll extends Component {
     }
 
     cargarDatos(type, endpoint) {
-        const url = api_url + "/" + type + "/" + endpoint + "?api_key=" + api_key + "&language=es-AR";
+        const url = api_url + "/" + type + "/" + endpoint + "?api_key=" + api_key;
         fetch(url)
             .then((res) => res.json())
             .then((data) => {
