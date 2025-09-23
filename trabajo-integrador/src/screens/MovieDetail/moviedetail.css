@@ -70,17 +70,16 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 8px 14px;
+  padding: 0px 14px;
   height: 38px;
   border-radius: 10px;
-  border: 1px solid #0b2440;   /* tinta */
-  background: #1366cc;         /* azul marca */
+  border: 1px solid #0b2440;
+  background: #1366cc;
   color: #fff;
   font-weight: 700;
   font-size: 0.95rem;
   line-height: 1;
-  cursor: pointer;
-  text-decoration: none;        /* por si un día es <a> */
+  text-decoration: none;
 }
 
 @media (max-width: 640px) {
